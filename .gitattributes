@@ -1,0 +1,17 @@
+# GitHub Linguist Configuration for Wegistics
+
+# Exclude configuration files, setup boilerplate, and mock data from language calculation
+web/vite.config.js linguist-vendored=true
+web/tailwind.config.js linguist-vendored=true
+web/postcss.config.js linguist-vendored=true
+web/package-lock.json linguist-vendored=true
+web/src/services/mockData.js linguist-vendored=true
+web/.oxlintrc.json linguist-vendored=true
+architecture.mmd linguist-documentation=true
+
+# Explicitly declare Smart Contract languages
+contracts/xrpl-hooks/*.c linguist-detectable=true
+contracts/xrpl-hooks/*.c linguist-language=C
+contracts/soroban-rust/src/*.rs linguist-detectable=true
+contracts/soroban-rust/src/*.rs linguist-language=Rust
+contracts/scripts/*.js linguist-detectable=true
