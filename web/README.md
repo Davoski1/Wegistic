@@ -4,8 +4,8 @@
 
 [![XRP Ledger](https://img.shields.io/badge/Blockchain-XRP_Ledger_(XRPL)-008CEE?logo=ripple&logoColor=white)](https://xrpl.org)
 [![Track: Agentic Finance](https://img.shields.io/badge/Track-Agentic_Finance-7006B7)](https://xrpl.org)
+[![Smart Contracts](https://img.shields.io/badge/Contracts-XRPL_Hooks_(C)_%26_Soroban_(Rust)-DEA584)](./contracts)
 [![DePIN](https://img.shields.io/badge/Category-DePIN_RWA_Logistics-10B981)](#-depin-liquidity-underwriting-vaults)
-[![Styleguide](https://img.shields.io/badge/Design_System-Telxi_Brand-8F0CD1)](./Styleguide.md)
 
 ---
 
@@ -69,6 +69,28 @@ flowchart TD
 
 ---
 
+## 📂 Repository Structure & Code Organization
+
+```
+wegistics/
+├── contracts/                        # Blockchain & Protocol Smart Contracts
+│   ├── xrpl-hooks/                   # XRPL Native Hooks in C (Wasm)
+│   │   └── escrow_seal_hook.c        # Cryptographic pre-image on-chain hook
+│   ├── soroban-rust/                 # Soroban Smart Contract in Rust
+│   │   ├── Cargo.toml                # Rust package definition
+│   │   └── src/lib.rs                # Rust escrow & settlement logic
+│   └── scripts/                      # Autonomous Deployment & CLI Scripts
+│       └── deploy-escrow.js          # Direct XRPL Testnet broadcast script
+├── web/                              # Production Web Client (React 19, Vite, Tailwind)
+│   ├── src/
+│   │   ├── components/               # Role-based interfaces (Merchant, Buyer, Fleet, Investor)
+│   │   ├── services/                 # xrpl.js WebSocket integration
+│   │   └── App.jsx                   # Protocol router
+└── README.md
+```
+
+---
+
 ## ⚡ The 4 Core User Journeys
 
 ### 1. 🛍️ The Merchant
@@ -108,8 +130,10 @@ flowchart TD
 
 ## 🛠️ Technology Stack & Ledger Primitives
 
+* **Smart Contracts & Logic:**
+  * **XRPL Hooks (C / WebAssembly):** On-chain rule enforcement for cryptographic pre-image conditions.
+  * **Soroban (Rust):** Dual-engine escrow implementation for cross-ecosystem interop.
 * **Frontend:** React 19, Vite, Tailwind CSS, Lucide Icons, HTML5-QRCode.
-* **Design Standard:** Strictly complies with the [Telxi Brand Style Guide](./Styleguide.md) (Mathematical 8-point spatial rhythm, `#7006B7` Brand Primary, `#8F0CD1` Brand Highlight, `#F3E8FF` Subtle Tint).
 * **Blockchain Core:** XRP Ledger (`xrpl.js` v3.x) over Secure WebSockets (`wss://s.altnet.rippletest.net:51233`).
 * **XRPL Primitives Used:**
   * `EscrowCreate`: Locks buyer funds on-chain with SHA-256 Crypto-Conditions.
@@ -120,10 +144,6 @@ flowchart TD
 ---
 
 ## 🚀 Local Development Setup
-
-### Prerequisites
-* **Node.js**: v18.0.0 or higher
-* **npm**: v9.0.0 or higher
 
 ### Quickstart
 ```bash
@@ -142,21 +162,8 @@ Visit `http://localhost:5174` in your browser.
 
 ---
 
-## 🌐 Free Azure Cloud Deployment
-
-Wegistics is optimized for zero-cost deployment via **Azure Static Web Apps**:
-
-1. Fork/Push this repository to GitHub.
-2. In the **Azure Portal**, create a new **Static Web App** (Free Tier).
-3. Connect your GitHub repository:
-   * **App location:** `/web`
-   * **Output location:** `dist`
-4. Add a Custom Domain pointing to `wegistics.telxi-app.com.ng` via CNAME record.
-
----
-
 ## 📄 License & Attribution
 
 Built for the **Ripple Agentic Finance Track** & **DePIN Track**.
-Designed under the **Telxi Ecosystem Design System**.
+Built under the **Telxi Ecosystem**.
 Licensed under the [MIT License](LICENSE).
