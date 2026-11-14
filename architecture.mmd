@@ -1,0 +1,46 @@
+flowchart TD
+    %% Styling Definitions
+    classDef physical fill:#1E1B4B,stroke:#6366F1,stroke-width:2px,color:#FFFFFF;
+    classDef agent fill:#3B0764,stroke:#A855F7,stroke-width:2px,color:#FFFFFF;
+    classDef xrpl fill:#082F49,stroke:#0284C7,stroke-width:2px,color:#FFFFFF;
+    classDef dispute fill:#450A0A,stroke:#EF4444,stroke-width:2px,color:#FFFFFF;
+
+    subgraph TIER1["1. PHYSICAL & CLIENT LAYER"]
+        Buyer["Buyer Web App (Wegistics)"]:::physical
+        Rider["Rider Mobile Client (GPS Telemetry)"]:::physical
+        Seal["Physical Tamper Seal (Cryptographic QR Pre-Image)"]:::physical
+    end
+
+    subgraph TIER2["2. AUTONOMOUS AGENTIC AI LAYER (The Brain)"]
+        Agent["🤖 Logistics Financial Treasury Agent"]:::agent
+        TelemetryEngine["Telemetry & Proximity Validator"]:::agent
+        ArbiterAI["Vision & Dispute Arbiter Agent"]:::agent
+    end
+
+    subgraph TIER3["3. XRP LEDGER (XRPL) ENFORCEMENT LAYER"]
+        Escrow["XRPL Native Escrow (EscrowCreate / EscrowFinish)"]:::xrpl
+        PayChannel["XRPL Payment Channels (Micro-streaming Rider Pay)"]:::xrpl
+        Vault["DePIN Liquidity Vaults (Cargo Theft Underwriting)"]:::xrpl
+        MultiSig["2-of-3 Multi-Signing (Agent + Arbiter + Merchant)"]:::dispute
+    end
+
+    %% Order & Escrow Initiation Flow
+    Buyer -->|"1. Places Order & Authorizes Escrow"| Agent
+    Agent -->|"2. Submits EscrowCreate (Locks XRP/RLUSD)"| Escrow
+
+    %% In-Transit Telemetry
+    Rider -->|"3. Live GPS & Proximity Pings"| TelemetryEngine
+    TelemetryEngine -->|"4. Verifies Dispatch En-Route"| Agent
+
+    %% Successful Physical Handover Flow
+    Buyer -->|"5. Unboxes & Scans Physical Seal QR"| Agent
+    Seal -.->|"Supplies Crypto Pre-Image"| Buyer
+    Agent -->|"6. Triggers EscrowFinish with Pre-Image"| Escrow
+    Escrow -->|"7. Autonomous Settlement to Merchant"| Escrow
+    Agent -->|"8. Streams Delivery Fee"| PayChannel
+    PayChannel -->|"Instant Payout"| Rider
+
+    %% Dispute / Exception Path
+    Buyer -.->|"Dispute Claim (Damaged Item Photo)"| ArbiterAI
+    ArbiterAI -->|"Initiates Dispute Settlement"| MultiSig
+    MultiSig -->|"Compensates via Liquidity Pool"| Vault

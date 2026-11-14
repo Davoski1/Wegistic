@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+:root {
+  --brand-highlight: #8F0CD1;
+  --brand-primary:   #7006B7;
+  --brand-dark:      #550592;
+  --brand-subtle:    #F3E8FF;
+  --brand-accent:    #DDD6FE;
+
+  --bg-primary:      #FFFFFF;
+  --bg-secondary:    #F5F5F5;
+  --text-primary:    #171717;
+  --text-secondary:  #737373;
+  --border-color:    #E5E5E5;
+}
+
+body {
+  background-color: #FFFFFF;
+  color: #171717;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-wordmark {
+  font-family: 'Bebas Neue', sans-serif;
+}
